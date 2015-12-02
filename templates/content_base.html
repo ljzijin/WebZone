@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+	.container_fulid{
+		background: #000 none repeat scroll 0 0;
+	    height: 54px;
+	    position: fixed;
+	    top: 0;
+	    width: 100%;
+	    z-index: 99999;
+	    color:white;
+	    margin-left: -8px;
+	}
+	.fr{
+		float: right;
+	}
+	.mr10{
+		margin-right: 10px;
+		display:inline;
+	}
+
+</style>
+<div id="header">
+	<nav>
+		<div class="container_fulid">
+			<div>
+				<span>Laurel's personal Zone&nbsp;|</span>
+				<span>WebZone</span>
+			</div>
+			<div class="dropdown">
+				<button class="btn btn-default dropdown-toggle fr mr10" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">我的空间
+					<span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+					<li><a href="">退出</a></li>
+					<li><a href="">更新</a></li>
+				</ul>
+			</div>	
+		</div>
+
+		<div>WebZone</div>
+	</nav>
+</div>
+{% block content_panel %}{% endblock %}
+{% endblock %}
