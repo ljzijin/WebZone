@@ -1,9 +1,9 @@
-from django.conf.urls import patterns, include, url
-
+#-*-coding:utf-8-*-
 from django.contrib import admin
 from django.conf.urls import *
 import views
 
 urlpatterns=patterns('',
-	url(r'^weibo/index/$',views.index),
+	url(r'^index/',views.index),
+	url(r'^create_blog/$',views.create_blog),
 	)
