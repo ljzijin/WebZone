@@ -1,5 +1,40 @@
 {% extends "content_base.html" %}
 {% block css %}
+<style type="text/css">
+.fr{float:right;}
+.fl{float:left;}
+.mt10{margin-top:10px;}
+.release_textarea{
+	width:880px;
+	height:50px;
+	/*text-align:center;*/
+}
+.send_weibo_head{
+	font-family:"Cursive ";
+	font-style:oblique;
+}
+.send_weibo_middle{
+	font-family:"Fantasy";
+	font-style:italic;
+}
+.xui_blog_content{
+	width:998px;
+	height:auto;
+	border:1px solid #F5F5F5;
+	margin-top:10px;
+}
+.weibo_list{
+	font-size: 16px;
+}
+.show_created_time{
+	font-size: 12px;
+	color:gray;
+}
+.operation_input{
+	width:930px;
+}
+
+</style>
 {% endblock %}
 {% block content_panel %}
 <div class="" style="margin-left: 205px;">
@@ -7,7 +42,112 @@
 		<li><a>你当前所在的位置</a></li>
 		<li><a>首页</a></li>
 	</ul>
-	<div style="border:1px solid red;width:990px;height:900px"></div>
-
+	<div class="index_content">
+		<div><span class="send_weibo_head">记录</span><span class="send_weibo_middle">点滴每一天，</span></span>发条动态吧</span></div>
+		<div style="text-align:center">
+			<textarea class="release_textarea xa-bolg-content"></textarea>	
+			<button class="btn btn-primary mb20 blog-submit">点我一下</button>		
+		</div>
+		{% if blogs %}
+		{% for blog in blogs %}
+		<div class="xui_blog_content" blog_id={{blog.id}}>
+			<div class="weibo_list">{{ blog.blog_content }}</div>
+			<div class="show_created_time">{{ blog.created_at|date:"Y-m-d" }}</div>
+			<div class="blog_operation">
+				<span><input type="button" class="btn btn-sm btn-info blog_comment" value="评论"></span>
+				<span><input type="button" class="btn btn-sm btn-info blog_forword" value="转发"></span>
+				<span><input type="button" class="btn btn-sm btn-info blog_prize" value="点赞"></span>
+			</div>
+			<div  class="operation_div mt10" style="display:none" flag="0" sign="0">
+				<input type="text" name="operation_input" class="operation_input">
+				<button class="xa_issue">发表</button>
+			</div>
+			{% if blog.id %}
+			{% for comment in blog_comments %}
+			<div>{{comment.comment_content}}</div>
+			<div>{{comment.created_at}}</div>
+			{% endfor %}
+			{% endif %}
+		</div>
+		{% endfor %}
+		{% endif %}
+		
+	</div>
 </div>
+{% endblock %}
+{% block js %}
+<script type="text/javascript">
+$(document).ready(function(){
+	$('.blog-submit').click(function(){
+		var bolg_content=$('.xa-bolg-content').val()
+		$.ajax({
+			url:'/weibo/create_blog/',
+			type:'post',
+			data:{
+			'bolg_content':bolg_content,	
+			},
+			success:function(resp){
+				if(resp.code==200){
+					location.href="/weibo/index/"
+				}
+				else{
+					alert(resp.errMsg)
+				}
+			},
+			error:function(){
+				console.log('save_blog_content_fail...')
+			}
+		})
+	})
+	$('.blog_comment').click(function(event){
+		var $el=$(event.target).parents('.xui_blog_content').find('.operation_div');
+		var flag=$el.attr('flag');		
+		if(flag==0){
+			flag=$el.attr('flag',1);
+			$el.show();
+		}
+		else{
+			flag=$el.attr('flag',0);
+			$el.hide();
+		}
+
+	});
+	$('.blog_forword').click(function(event){
+		var $el=$(event.target).parents('.xui_blog_content').find('.operation_div');
+		var sign=$el.attr('sign');
+		console.log(sign);		
+		if(sign==0){
+			sign=$el.attr('sign',1);
+			$el.show();
+		}
+		else{
+			sign=$el.attr('sign',0);
+			$el.hide();
+		}
+
+	})
+	$('.xa_issue').click(function(event){
+		var blog_id=$(event.target).parents('.xui_blog_content').attr('blog_id');
+		console.log(blog_id)
+		var comment_content = $(event.target).siblings('.operation_input').val();
+		$.ajax({
+			url:'/weibo/comment_blog/',
+			type:'post',
+			data:{
+				'comment_content':comment_content,
+				'blog_id':blog_id,
+			},
+			success:function(resp){
+				if(resp.code==200){
+					location.href=""
+				}
+
+			},
+			error:function(error){
+				console.log('comment_content_is_fail...')
+			}
+		})
+	})
+})
+</script>
 {% endblock %}
