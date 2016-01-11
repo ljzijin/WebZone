@@ -30,9 +30,12 @@
 	font-size: 12px;
 	color:gray;
 }
+<<<<<<< HEAD
 .operation_input{
 	width:930px;
 }
+=======
+>>>>>>> 80918682690ef858f30cb54d80448d158eb453f6
 
 </style>
 {% endblock %}
@@ -50,12 +53,17 @@
 		</div>
 		{% if blogs %}
 		{% for blog in blogs %}
+<<<<<<< HEAD
 		<div class="xui_blog_content" blog_id={{blog.id}}>
+=======
+		<div class="xui_blog_content">
+>>>>>>> 80918682690ef858f30cb54d80448d158eb453f6
 			<div class="weibo_list">{{ blog.blog_content }}</div>
 			<div class="show_created_time">{{ blog.created_at|date:"Y-m-d" }}</div>
 			<div class="blog_operation">
 				<span><input type="button" class="btn btn-sm btn-info blog_comment" value="评论"></span>
 				<span><input type="button" class="btn btn-sm btn-info blog_forword" value="转发"></span>
+<<<<<<< HEAD
 				<span><input type="button" class="btn btn-sm btn-info blog_prize" value="点赞"></span>
 			</div>
 			<div  class="operation_div mt10" style="display:none" flag="0" sign="0">
@@ -68,6 +76,11 @@
 			<div>{{comment.created_at}}</div>
 			{% endfor %}
 			{% endif %}
+=======
+				<span><input type="button" class="btn btn-sm btn-info blog_price" value="点赞"></span>
+			</div>
+			<div  class="operation_div mt10" style="display:none" flag="1"><input type="text" name="operation_input" class="operation_input"></div>
+>>>>>>> 80918682690ef858f30cb54d80448d158eb453f6
 		</div>
 		{% endfor %}
 		{% endif %}
@@ -99,6 +112,7 @@ $(document).ready(function(){
 			}
 		})
 	})
+<<<<<<< HEAD
 	$('.blog_comment').click(function(event){
 		var $el=$(event.target).parents('.xui_blog_content').find('.operation_div');
 		var flag=$el.attr('flag');		
@@ -147,6 +161,19 @@ $(document).ready(function(){
 				console.log('comment_content_is_fail...')
 			}
 		})
+=======
+	$('.blog_comment').click(function(){
+		var flag=$('.operation_div').attr('flag');
+		if(flag==1){
+			$('.operation_div').show();
+			flag=$('.operation_div').attr('flag',0);
+		}
+		else{
+			$('.operation_div').hide();
+			flag=$('.operation_div').attr('flag',1);
+		}
+
+>>>>>>> 80918682690ef858f30cb54d80448d158eb453f6
 	})
 })
 </script>

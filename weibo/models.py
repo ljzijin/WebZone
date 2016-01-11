@@ -3,6 +3,7 @@ from django.db import models
 
 # Create your models here.
 class Blog(models.Model):
+<<<<<<< HEAD
 	blog_user=models.IntegerField()#所属用户id
 	blog_content=models.CharField(max_length=1024)#微博内容
 	created_at=models.DateTimeField(auto_now_add=True)#微博创建时间
@@ -18,3 +19,11 @@ class BlogComment(models.Model):
 
 	class Meta(object):
 		db_table='blog_comment'
+=======
+	blog_user=models.IntegerField()
+	blog_content=models.CharField(max_length=1024)
+	created_at=models.DateTimeField(auto_now_add=True)
+
+	class Meta(object):
+		db_table='weibo_blog'
+>>>>>>> 80918682690ef858f30cb54d80448d158eb453f6

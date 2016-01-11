@@ -22,6 +22,7 @@ HOME_SECOND_NAV=[{
 # Create your views here.
 def index(request):
 	blogs=Blog.objects.all().order_by('-created_at')
+<<<<<<< HEAD
 	blog_comments=BlogComment.objects.all().order_by('-created_at')
 	blog_list=[]
 	for blog_c in blog_comments:
@@ -41,6 +42,15 @@ def index(request):
 #===============================================================
 #发布微博
 #===============================================================
+=======
+	c= RequestContext(request,{
+		'second_navs':HOME_SECOND_NAV,
+		'blogs':blogs,
+
+		})
+	return render_to_response('weibo/index.html',c)
+
+>>>>>>> 80918682690ef858f30cb54d80448d158eb453f6
 def create_blog(request):
 	blog_user = request.user.id
 	blog_content=request.POST.get('bolg_content','')
@@ -55,6 +65,7 @@ def create_blog(request):
 		response=create_response(500)
 		response.errMsg='创建失败'
 	return response.get_response()			
+<<<<<<< HEAD
 #===============================================================
 #评论微博
 #===============================================================	
@@ -73,4 +84,7 @@ def comment_blog(request):
 		response=create_response(500)
 		response.errMsg='评论失败'
 	return response.get_response()		
+=======
+	
+>>>>>>> 80918682690ef858f30cb54d80448d158eb453f6
 
