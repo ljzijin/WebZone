@@ -29,6 +29,7 @@ def login(request):
 		c=RequestContext(request,{
 				'errMsg':u'用户名或密码错误'
 			})		
+<<<<<<< HEAD
 		return render_to_response('account/login.html',c)		
 
 def logout(request):
@@ -36,3 +37,6 @@ def logout(request):
 	c=RequestContext(request,{})
 	return render_to_response('account/login.html',c)
 	return HttpResponseRedirect('/account/login/')		
+=======
+		return render_to_response('account/login.html',c)		
+>>>>>>> 8d0c4837016056e72d3829b4e2a11fa4fdaee17d

@@ -22,6 +22,7 @@ HOME_SECOND_NAV=[{
 # Create your views here.
 def index(request):
 	blogs=Blog.objects.all().order_by('-created_at')
+<<<<<<< HEAD
 	blog_list=[]
 	comment_list=[]
 	blog_comments=BlogComment.objects.all().order_by('-created_at')
@@ -58,17 +59,44 @@ def index(request):
 		if blog_dict not in blog_list:
 			blog_list.append(blog_dict)
 	blog_list=sorted(blog_list,key=lambda blog_dict:blog_dict['blog_created_at'],reverse=True)
+=======
+<<<<<<< HEAD
+	blog_comments=BlogComment.objects.all().order_by('-created_at')
+	blog_list=[]
+	for blog_c in blog_comments:
+		blog_id=blog_c.blog_id
+		blog_dict={
+			'comment_content':blog_c.comment_content,
+			'comment_created_at':blog_c.created_at,
+		}
+
+>>>>>>> 8d0c4837016056e72d3829b4e2a11fa4fdaee17d
 	c= RequestContext(request,{
 		'second_navs':HOME_SECOND_NAV,
 		'blogs':blogs,
 		'blog_comments':blog_comments,
+<<<<<<< HEAD
 		'blog_list':blog_list,
+=======
+>>>>>>> 8d0c4837016056e72d3829b4e2a11fa4fdaee17d
 
 		})
 	return render_to_response('weibo/index.html',c)
 #===============================================================
 #发布微博
 #===============================================================
+<<<<<<< HEAD
+=======
+=======
+	c= RequestContext(request,{
+		'second_navs':HOME_SECOND_NAV,
+		'blogs':blogs,
+
+		})
+	return render_to_response('weibo/index.html',c)
+
+>>>>>>> 80918682690ef858f30cb54d80448d158eb453f6
+>>>>>>> 8d0c4837016056e72d3829b4e2a11fa4fdaee17d
 def create_blog(request):
 	blog_user = request.user.id
 	blog_content=request.POST.get('bolg_content','')
@@ -83,6 +111,10 @@ def create_blog(request):
 		response=create_response(500)
 		response.errMsg='创建失败'
 	return response.get_response()			
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 8d0c4837016056e72d3829b4e2a11fa4fdaee17d
 #===============================================================
 #评论微博
 #===============================================================	
@@ -101,4 +133,10 @@ def comment_blog(request):
 		response=create_response(500)
 		response.errMsg='评论失败'
 	return response.get_response()		
+<<<<<<< HEAD
+=======
+=======
+	
+>>>>>>> 80918682690ef858f30cb54d80448d158eb453f6
+>>>>>>> 8d0c4837016056e72d3829b4e2a11fa4fdaee17d
 
