@@ -24,16 +24,15 @@
       }
       .xui_container{
       	width:1200px;
-      	height:auto;
+      	min-height:0;
       	margin: 0 auto;
       }
       .xui_sidenav{
       	width:200px;
       	float:left;
-      	min-height: 35px;
       	border-right:1px solid silver;
       	background:#EBECED;
-      	height: 950px;
+      	height: 100%;
       }
       .nav{
       	height: 30px;
@@ -57,7 +56,7 @@
 			</div>
 			<div class="fl" style="width: 1200px;">
 				<ul class="nav navbar-nav navbar-brand clearStyle" style="margin-left: 300px;margin-top: -30px;position: absolute;">
-					<li><a href="">首页</a></li>
+					<li><a href="/weibo/index">首页</a></li>
 					<li><a href="">编程</a></li>
 					<li><a href="">读书</a></li>
 					<li><a href="">技术交流</a></li>
@@ -69,8 +68,8 @@
 				<button class="btn btn-default dropdown-toggle fr mr10" type="button" data-toggle="dropdown" style="margin-top: -32px;">我的空间
 					<span class="caret"></span>
 				</button>
-				<ul class="dropdown-menu" style="min-width: 105px;margin: 2px 24px 0;">
-					<li><a href="">退出</a></li>
+				<ul class="dropdown-menu" style="min-width: 96px;margin: 2px 24px 0;">
+					<li><a href="/account/logout/">退出</a></li>
 					<li><a href="">更新</a></li>
 				</ul>
 			</div>	
